@@ -1,0 +1,140 @@
+{
+	"name": "vehicle",
+	"spriteSheetImage": "vehicle.png",
+	"spriteWidth": 256,
+	"spriteHeight": 256,
+	"leftBuffer": 0,
+	"rightBuffer": 0,
+	"topBuffer": 0,
+	"bottomBuffer": 0,
+	"columns": 5,
+	"rows": 5,
+	"animations": [
+		{
+			"name": "driving",
+			"repeat": true,
+			"frames": [
+				{
+					"index": 0,
+					"duration": 12
+				},
+				{
+					"index": 1,
+					"duration": 12
+				},
+				{
+					"index": 2,
+					"duration": 12
+				},
+				{
+					"index": 3,
+					"duration": 12
+				}
+			]
+		},
+		{
+			"name": "shooting",
+			"repeat": true,
+			"frames": [
+				{
+					"index": 4,
+					"duration": 12
+				},
+				{
+					"index": 5,
+					"duration": 12
+				},
+				{
+					"index": 6,
+					"duration": 12
+				},
+				{
+					"index": 7,
+					"duration": 12
+				}
+			]
+		},
+		{
+			"name": "taking damage",
+			"repeat": true,
+			"frames": [
+				{
+					"index": 8,
+					"duration": 12
+				},
+				{
+					"index": 9,
+					"duration": 12
+				},
+				{
+					"index": 10,
+					"duration": 12
+				},
+				{
+					"index": 11,
+					"duration": 12
+				},
+				{
+					"index": 12,
+					"duration": 12
+				},
+				{
+					"index": 13,
+					"duration": 12
+				}
+			]
+		},
+		{
+			"name": "being killed",
+			"repeat": true,
+			"frames": [
+				{
+					"index": 14,
+					"duration": 12
+				},
+				{
+					"index": 15,
+					"duration": 12
+				},
+				{
+					"index": 16,
+					"duration": 12
+				},
+				{
+					"index": 17,
+					"duration": 12
+				},
+				{
+					"index": 18,
+					"duration": 12
+				},
+				{
+					"index": 19,
+					"duration": 12
+				}
+			]
+		},
+		{
+			"name": "dead",
+			"repeat": true,
+			"frames": [
+				{
+					"index": 20,
+					"duration": 12
+				},
+				{
+					"index": 21,
+					"duration": 12
+				},
+				{
+					"index": 22,
+					"duration": 12
+				},
+				{
+					"index": 23,
+					"duration": 12
+				}
+			]
+		}
+	]
+}

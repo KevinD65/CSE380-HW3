@@ -69,7 +69,7 @@ export default class Homework3_Scene extends Scene {
 	private bg1: Sprite;
 	private bg2: Sprite;
 
-	// HOMEWORK 3 - TODO 
+	// HOMEWORK 3 - TODO (DONE)
 	/*
 		You'll want to be sure to load in your own sprite here
 	*/
@@ -80,7 +80,7 @@ export default class Homework3_Scene extends Scene {
 	loadScene(){
 		/* ##### DO NOT MODIFY ##### */
 		// Load in the player car spritesheet
-		this.load.spritesheet("player", "hw3_assets/spritesheets/cars.json");
+		this.load.spritesheet("player", "hw3_assets/spritesheets/vehicle.json");
 
 		// Load in the background image
 		this.load.image("desert_road", "hw3_assets/sprites/road.jpg");

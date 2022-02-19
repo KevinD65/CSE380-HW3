@@ -16,12 +16,14 @@ export enum Homework3Shaders {
 	LINEAR_GRADIENT_CIRCLE = "LINEAR_GRADIENT_CIRCLE"
 }
 
-// HOMEWORK 3 - TODO
+// HOMEWORK 3 - TODO (DONE)
 /*
  * Make sure these match the animation names for your own animated sprite.
  */
 export enum Homework3Animations {
-	CAR_IDLE = "idle",
-	CAR_BOOST = "boost",
-	CAR_DIE = "explode"
+	CAR_DRIVING = "driving",
+	CAR_SHOOTING = "shooting",
+	CAR_TAKING_DAMAGE = "taking damage",
+	CAR_DYING = "being killed",
+	CAR_DEAD = "dead"
 }

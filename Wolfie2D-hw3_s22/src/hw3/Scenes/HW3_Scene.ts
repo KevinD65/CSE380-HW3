@@ -400,7 +400,7 @@ export default class Homework3_Scene extends Scene {
 		}
 	}
 
-	// HOMEWORK 3 - TODO
+	// HOMEWORK 3 - TODO (DONE)
 	/**
 	 * Handles all collisions.
 	 * Collisions only occur between:
@@ -480,6 +480,11 @@ export default class Homework3_Scene extends Scene {
 				// If the rock is spawned in and it overlaps the player
 				if(rock.visible && this.player.collisionShape.overlaps(rock.boundary)){
 					// Put your code here:
+					rock.visible = false; //destory the rock
+					this.playerinvincible = true; //make the player invincible
+					this.playerHealth = this.playerHealth - 1; //decrease the health of the player
+					this.emitter.fireEvent(Homework3Event.PLAYER_DAMAGE, {health: this.playerHealth});
+					this.healthLabel.text = `Health: ${this.playerHealth}`;
 				}
 			}
 		}

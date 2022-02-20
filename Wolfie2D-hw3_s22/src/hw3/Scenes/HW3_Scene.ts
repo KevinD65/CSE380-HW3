@@ -576,6 +576,18 @@ export default class Homework3_Scene extends Scene {
 	 */
 	handleScreenDespawn(node: CanvasNode, viewportCenter: Vec2, paddedViewportSize: Vec2, isBullet: boolean): void {
 		// Your code goes here:
+		let paddedViewportTopEdge = viewportCenter.y + (paddedViewportSize.y/2); //for bullets
+		let paddedViewportBottomEdge = viewportCenter.y - (paddedViewportSize.y/2); //for rocks
+		//console.log(paddedViewportTopEdge + "and" + paddedViewportBottomEdge);
+		if(node.boundary.y > paddedViewportTopEdge || node.boundary.y < paddedViewportBottomEdge){
+			//EXECUTES THE APPROPRIATE METHOD OF DESPAWNING DEPENDING ON WHETHER THE NODE THAT WENT OFF SCREEN IS A BULLET OR ROCK
+			if(isBullet){
+				this.emitter.fireEvent(Homework3Event.BULLET_USED, {id: node.id});
+			}
+			else{ //THE NODE THAT WENT OFF SCREEN IS A ROCK
+				node.visible = false;
+			}
+		}
 	}
 
 	// HOMEWORK 3 - TODO (3. BOUND CAR)

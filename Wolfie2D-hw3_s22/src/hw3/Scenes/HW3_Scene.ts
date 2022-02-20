@@ -174,6 +174,7 @@ export default class Homework3_Scene extends Scene {
 		const baseViewportSize = this.viewport.getHalfSize().scaled(2);
 
 		// Check the position of our player
+		console.log("HEREHEREHERHERE");
 		this.lockPlayer(viewportCenter, baseViewportSize);
 
 		// Handle the despawing of all other objects that move offscreen
@@ -524,7 +525,7 @@ export default class Homework3_Scene extends Scene {
 		}
 	}
 
-	// HOMEWORK 3- TODO
+	// HOMEWORK 3- TODO (DONE)
 	/**
 	 * This function takes in a GameNode that may be out of bounds of the viewport and
 	 * "kills" it as if it was destroyed through usual collision. This is done so that
@@ -590,7 +591,7 @@ export default class Homework3_Scene extends Scene {
 		}
 	}
 
-	// HOMEWORK 3 - TODO (3. BOUND CAR)
+	// HOMEWORK 3 - TODO (3. BOUND CAR) (DONE)
 	/**
 	 * This function is similar to the despawn function above, except there's no padded area since we
 	 * want tight bounds. Using a similar illustration from above:
@@ -614,8 +615,25 @@ export default class Homework3_Scene extends Scene {
 	 * @param viewportSize The size of the viewport
 	 */
 	lockPlayer(viewportCenter: Vec2, viewportSize: Vec2): void {
-		//REMOVE
 		// Your code goes here:
+		let RightBound = (viewportCenter.x + viewportSize.x/2) - 25;
+		let LeftBound = (viewportCenter.x - viewportSize.x/2) + 25;
+		let UpBound = (viewportCenter.y - viewportSize.y/2) + 42;
+		let DownBound = viewportCenter.y + viewportSize.y/2 - 42;
+
+		//console.log("PLAYER POSITION: " + this.player.position.y);
+		if(this.player.position.x >= RightBound){
+			this.player.position.x = RightBound;
+		}
+		else if(this.player.position.x <= LeftBound){
+			this.player.position.x = LeftBound;
+		}
+		else if(this.player.position.y <= UpBound){
+			this.player.position.y = UpBound;
+		}
+		else if(this.player.position.y >= DownBound){
+			this.player.position.y = DownBound;
+		}
 	}
 
 	// HOMEWORK 3 - TODO (2. collision)

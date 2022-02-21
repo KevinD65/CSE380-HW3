@@ -82,9 +82,9 @@ export default class CarPlayerController implements AI {
 		if(Input.isKeyPressed("shift")) {
 			this.speed = this.MAX_SPEED;
 		}
-		else if(Input.isMousePressed()){
-			let currentX = this.owner.positionX;
-			let currentY = this.owner.positionY;
+		else if(Input.isMouseJustPressed()){
+			let currentX = this.owner.position.x;
+			let currentY = this.owner.position.y;
 			let newVec = new Vec2(currentX, currentY);
 			this.emitter.fireEvent(Homework3Event.SHOOT_BULLET, {position: newVec});
 			this.owner.animation.play(Homework3Animations.CAR_SHOOTING, false, Homework3Event.PLAYER_I_FRAMES_END);

@@ -174,7 +174,7 @@ export default class Homework3_Scene extends Scene {
 		const baseViewportSize = this.viewport.getHalfSize().scaled(2);
 
 		// Check the position of our player
-		console.log("HEREHEREHERHERE");
+		//console.log("HEREHEREHERHERE");
 		this.lockPlayer(viewportCenter, baseViewportSize);
 
 		// Handle the despawing of all other objects that move offscreen
@@ -309,9 +309,21 @@ export default class Homework3_Scene extends Scene {
 
 		if(bullet !== null){
 			// Spawn a bullet
+			console.log("SPAWNING BULLET");
+			let ColorRNG = Math.random();
+			console.log(ColorRNG);
 			bullet.visible = true;
 			bullet.position = position.add(new Vec2(0, -64));
-			bullet.setAIActive(true, {speed: 250});
+			if(ColorRNG < 0.5){
+				console.log("FIRING MAGENTA BULLET");
+				bullet.color = Color.MAGENTA;
+				bullet.setAIActive(true, {speed: 250});
+			}
+			else{
+				console.log("FIRING YELLOW BULLET");
+				bullet.color = Color.YELLOW;
+				bullet.setAIActive(true, {speed: 1000});
+			}
 		}
 	}
 
@@ -662,9 +674,24 @@ export default class Homework3_Scene extends Scene {
 	 * @returns True if the two shapes overlap, false if they do not
 	 */
 	static checkAABBtoCircleCollision(aabb: AABB, circle: Circle): boolean {
-		//REMOVE
-		// Your code goes here:
-		return false;
-	}
 
+		//THINK: ADD THE TOTAL DISTANCE BETWEEN THE CENTERS OF THE SHAPES, ACCOUNT FOR THE EDGES SO COLLISION ONLY HAPPENS WHEN EDGES OVERLAP, AND THEN SEE IF THERE IS AN OVERLAP
+
+		//CHECK FOR A POTENTIAL X-AXIS OVERLAP 
+		let diffX = Math.abs(aabb.x - circle.x); //calculates the absolute value of the difference in the x-coordinates of the shapes
+		let xOverlap = (aabb.getHalfSize().x + circle.radius) - diffX; //adds the half sizes (distance from edge of shape to its center) and subtracts the distance between the x-coordinates of the shapes
+		if(xOverlap <= 0){ //if the value is less than or equal to 0, there is no overlap because there is still distance between the edges of the shapes on the x-axis
+			return false;
+		}
+
+		let diffY = Math.abs(aabb.y - circle.y); //calculates the absolute value of the difference in the y coordinates of the shapes
+		let yOverlap = (aabb.getHalfSize().y + circle.radius) - diffY; //adds the half sizes (distance from edge of shape to its center) and subtracts the distance between the y-coordinates of the shapes
+		if(yOverlap <= 0){ //if the value is less than or equal to 0, there is no overlap because there is still distance between the edges of the shapes on the y-axis
+			return false;
+		}
+
+		//IF THERE IS AN OVERLAP AMONGST THE X AND Y AXES, THE AABB AND CIRCLE OVERLAP
+		console.log("OVERLAP DETECTED");
+		return true;
+	}
 }

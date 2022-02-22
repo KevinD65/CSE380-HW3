@@ -28,20 +28,29 @@ void main(){
 
 	//HOLDS THE Y-VALUE OF THE POSITION OF THE PIXEL REALTIVE TO THE CENTER OF THE BULLET(CIRCLE)
 	float distFromCircleBottom = v_Position.y + 0.5;
+	float distFromCircleLeft = v_Position.x + 0.5;
+	float avgOfPos = (distFromCircleBottom + distFromCircleLeft)/2.0;
 
-	//HOLDS THE INITIAL RGB VALUES OF COLOR1 OF THE CIRCLE
+	//HOLDS THE INITIAL RGB VALUES OF COLOR1 (EITHER PINK/MAGENTA OR YELLOW) OF THE CIRCLE
 	float InitialRValueC1 = circle_Color.x;
 	float InitialGValueC1 = circle_Color.y;
 	float InitialBValueC1 = circle_Color.z;
 
-	vec3 C1BLUE = vec3(0.0, 0.0, 255.0);
+	//HOLDS BLUE AND THE SECOND COLOR AS VECTORS
+	vec3 BLUEC = vec3(0.0, 0.0, 255.0);
 	vec3 SECONDCOLOR = vec3(InitialRValueC1, InitialGValueC1, InitialBValueC1);
 
-	float mixR = mix(C1BLUE.x, SECONDCOLOR.x, distFromCircleBottom);
-	float mixG = mix(C1BLUE.y, SECONDCOLOR.y, distFromCircleBottom);
-	float mixB = mix(C1BLUE.z, SECONDCOLOR.z, distFromCircleBottom);
+	//MIXES THE RGB VALUES FOR INTERPOLATION
+	float mixR = mix(BLUEC.x, SECONDCOLOR.x, avgOfPos);
+	float mixG = mix(BLUEC.y, SECONDCOLOR.y, avgOfPos);
+	float mixB = mix(BLUEC.z, SECONDCOLOR.z, avgOfPos);	
+	
+	if(InitialBValueC1 == 0.0){ //YELLOW
+		mixB = mix(SECONDCOLOR.z, BLUEC.z, avgOfPos);
+		mixB = 165.0 - mixB;
+	}
 
-	// Use the alpha value in our color
+	//USES THE RGBA VALUES WE CALCULATED
 	gl_FragColor = vec4(circle_Color);
 	gl_FragColor.a = alpha;
 	gl_FragColor.r = mixR;

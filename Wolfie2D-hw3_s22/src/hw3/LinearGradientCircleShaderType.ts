@@ -13,7 +13,7 @@ export default class LinearGradientCircleShaderType extends RectShaderType {
 
 	initBufferObject(): void {
 		this.bufferObjectKey = "linear_gradient_circle";
-		this.resourceManager.createBuffer(this.bufferObjectKey);
+		this.resourceManager.createBuffer(this.bufferObjectKey); //CREATES A BUFFER OBJECT
 	}
 
 	// HOMEWORK 3 - TODO 
@@ -43,14 +43,14 @@ export default class LinearGradientCircleShaderType extends RectShaderType {
 		const FSIZE = vertexData.BYTES_PER_ELEMENT;
 
 		// Bind the buffer
-		gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-		gl.bufferData(gl.ARRAY_BUFFER, vertexData, gl.STATIC_DRAW);
+		gl.bindBuffer(gl.ARRAY_BUFFER, buffer); //BIND THE BUFFER OBJECT TO A TARGET ("buffer")
+		gl.bufferData(gl.ARRAY_BUFFER, vertexData, gl.STATIC_DRAW); //WRITE DATA INTO THE BUFFER
 
 		/* ##### ATTRIBUTES ##### */
 		// No texture, the only thing we care about is vertex position
-		const a_Position = gl.getAttribLocation(program, "a_Position");
-		gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, 2 * FSIZE, 0 * FSIZE);
-		gl.enableVertexAttribArray(a_Position);
+		const a_Position = gl.getAttribLocation(program, "a_Position"); //OBTAINS THE STORAGE LOCATION PREPARED FOR "a_position"
+		gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, 2 * FSIZE, 0 * FSIZE); //ASSIGN BUFFER OBJECT TO "a_position" VARIABLE
+		gl.enableVertexAttribArray(a_Position); //ENABLE ASSIGNMENT
 
 		/* ##### UNIFORMS ##### */
 
@@ -80,11 +80,15 @@ export default class LinearGradientCircleShaderType extends RectShaderType {
 		const circle_Color = gl.getUniformLocation(program, "circle_Color");
 		gl.uniform4f(circle_Color, webGL_color[0], webGL_color[1], webGL_color[2], webGL_color[3]);
 
+		let webGL_color2 = options.color.toWebGL();
+		const circle_Color2 = gl.getUniformLocation(program, "circle_Color2");
+		gl.uniform4f(circle_Color2, webGL_color[0], webGL_color[1], webGL_color[2], webGL_color[3]);
+
 		// Draw the quad
-		gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+		gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); //START DRAWING FROM 0TH VERTEX AND DRAW 4 VERTICES (EXECUTES THE VERTEX SHADER)
 	}
 
-	// HOMEWORK 3 - TODO
+	// HOMEWORK 3 - TODO (DONE)
 	/**
 	 * This method decides what options get passed to the above render() method.
 	 * You should modify this class to allow you to pass another color into the render method.
@@ -97,6 +101,7 @@ export default class LinearGradientCircleShaderType extends RectShaderType {
 			size: gc.size,
 			rotation: gc.rotation,
 			color: gc.color,
+			color2: Color.BLUE
 		}
 		return options;
 	}

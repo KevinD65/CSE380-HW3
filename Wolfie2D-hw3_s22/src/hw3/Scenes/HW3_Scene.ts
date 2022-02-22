@@ -249,10 +249,10 @@ export default class Homework3_Scene extends Scene {
 		for(let i = 0; i < this.bullets.length; i++){
 			this.bullets[i] = this.add.graphic(GraphicType.RECT, "primary", {position: new Vec2(0, 0), size: new Vec2(50, 50)});
 
-			// HOMEWORK 3 - TODO
+			// HOMEWORK 3 - TODO (DONE)
 			// Currently bullets use the base custom gradient circle shader, 
 			// you'll need to change this to the Linear Gradient Circle once you get that shader working. 
-			this.bullets[i].useCustomShader(Homework3Shaders.GRADIENT_CIRCLE);
+			this.bullets[i].useCustomShader(Homework3Shaders.LINEAR_GRADIENT_CIRCLE);
 
 			this.bullets[i].visible = false;
 			// This is the color each bullet is set to by default, you can change this if you like a different color
@@ -290,7 +290,7 @@ export default class Homework3_Scene extends Scene {
 		}
 	}
 
-	// HOMEWORK 3 - TODO
+	// HOMEWORK 3 - TODO (DONE)
 	/**  
 	 * This function spawns a bullet from the object pool. Your task is to randomly select either pink or yellow as it's color, and
 	 * change it's speed accordingly. The second color of the linear gradient circle will be set in the LinearGradientCircleShaderType file.
@@ -492,7 +492,6 @@ export default class Homework3_Scene extends Scene {
 			for(let rock of this.rocks){
 				// If the rock is spawned in and it overlaps the player
 				if(rock.visible && this.player.collisionShape.overlaps(rock.boundary)){
-					// Put your code here:
 					rock.visible = false; //destory the rock
 					this.playerinvincible = true; //make the player invincible
 					this.playerHealth = this.playerHealth - 1; //decrease the health of the player
@@ -637,18 +636,18 @@ export default class Homework3_Scene extends Scene {
 		if(this.player.position.x >= RightBound){
 			this.player.position.x = RightBound;
 		}
-		else if(this.player.position.x <= LeftBound){
+		if(this.player.position.x <= LeftBound){
 			this.player.position.x = LeftBound;
 		}
-		else if(this.player.position.y <= UpBound){
+		if(this.player.position.y <= UpBound){
 			this.player.position.y = UpBound;
 		}
-		else if(this.player.position.y >= DownBound){
+		if(this.player.position.y >= DownBound){
 			this.player.position.y = DownBound;
 		}
 	}
 
-	// HOMEWORK 3 - TODO (2. collision)
+	// HOMEWORK 3 - TODO (2. collision) (DONE)
 	/**
 	 * This method checks whether or not an AABB collision shape and a Circle collision shape
 	 * overlap with each other.
